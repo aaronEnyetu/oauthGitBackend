@@ -34,6 +34,8 @@ describe('why-i-autha routes', () => {
     expect(res.body.message).toEqual('Signed out successfully!');
   });
 
+  
+
 
   afterAll(() => {
     pool.end();
