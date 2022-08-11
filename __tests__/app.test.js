@@ -34,7 +34,10 @@ describe('why-i-autha routes', () => {
     expect(res.body.message).toEqual('Signed out successfully!');
   });
 
-  
+  it('unauthenticated users are not able to see posts', async () => {
+    const res = await request(app).get('/api/v1/posts');
+    expect(res.status).toEqual(401);
+  });
 
 
   afterAll(() => {
