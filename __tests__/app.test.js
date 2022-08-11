@@ -29,6 +29,11 @@ describe('why-i-autha routes', () => {
     });
   });
 
+  it('DELETE should logout a user', async () => {
+    const res = await request(app).delete('/api/v1/github/sessions');
+    expect(res.body.message).toEqual('Signed out successfully!');
+  });
+
 
   afterAll(() => {
     pool.end();
