@@ -48,6 +48,14 @@ describe('why-i-autha routes', () => {
     expect(res.body.length).toEqual(3);
   });
 
+  it('should allow user to create a new post', async () => {
+    const agent = request.agent(app);
+    await agent.get('/api/v1/github/callback?code=42');
+
+    const res = await agent.post('/api/v1/posts').send({ message: 'to err is human-to error is computer' });
+    expect(res.body.message).toEqual('to err is human-to error is computer');
+  });
+
 
   afterAll(() => {
     pool.end();
