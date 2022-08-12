@@ -39,6 +39,15 @@ describe('why-i-autha routes', () => {
     expect(res.status).toEqual(401);
   });
 
+  it('should return a list of posts', async () => {
+    const agent = request.agent(app);
+    await agent.get('/api/v1/github/callback?code=42');
+
+    const res = await agent.get('/api/v1/posts');
+
+    expect(res.body.length).toEqual(3);
+  });
+
 
   afterAll(() => {
     pool.end();
