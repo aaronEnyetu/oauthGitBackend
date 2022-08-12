@@ -56,6 +56,12 @@ describe('why-i-autha routes', () => {
     expect(res.body.message).toEqual('to err is human-to error is computer');
   });
 
+  it('should return error for unauthenticated user', async () => {
+    const res = await request(app).post('/api/v1/posts').send({ message: 'to err is human-to error is computer' });
+    expect(res.status).toEqual(401);
+  });
+
+
 
   afterAll(() => {
     pool.end();
